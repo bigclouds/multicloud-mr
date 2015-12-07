@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infinispan
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:infinispan:config:7.0 http://www.infinispan.org/schemas/infinispan-config-7.0.xsd"
+        xmlns="urn:infinispan:config:7.0">
+
+    <threads>
+        <thread-factory name="infinispan-factory" group-name="infinispan"
+                        thread-name-pattern="%G %i" priority="5"/>
+        <cached-thread-pool name="infinispan-cached" thread-factory="infinispan-factory"/>
+        <blocking-bounded-queue-thread-pool name="infinispan-listener"
+                                            thread-factory="infinispan-factory"
+                                            core-threads="1" max-threads="1" queue-length="0"
+                                            keepalive-time="0"/>
+        <blocking-bounded-queue-thread-pool name="infinispan-transport"
+                                            thread-factory="infinispan-factory"
+                                            core-threads="5" max-threads="10" queue-length="100"
+                                            keepalive-time="10000"/>
+        <scheduled-thread-pool name="infinispan-eviction" thread-factory="infinispan-factory"/>
+        <scheduled-thread-pool name="infinispan-repl-queue" thread-factory="infinispan-factory"/>
+    </threads>
+    <cache-container name="defaultContainer" statistics="true" default-cache="defaultEncryptedCache">
+
+
+        <!--<serialization marshaller="org.infinispan.marshall.core.VersionAwareMarshaller"-->
+        <!--version="1.0">-->
+        <!--&lt;!&ndash; AdvancedExternalizer defined as inner static class, with id set via XML configuration &ndash;&gt;-->
+        <!--<advanced-externalizer id="1234"-->
+        <!--class="org.infinispan.marshall.AdvancedExternalizerTest$IdViaConfigObj$Externalizer"/>-->
+        <!--&lt;!&ndash; AdvancedExternalizer defined as inner static class, with id set via annotation &ndash;&gt;-->
+        <!--<advanced-externalizer-->
+        <!--class="org.infinispan.marshall.AdvancedExternalizerTest$IdViaAnnotationObj$Externalizer"/>-->
+        <!--&lt;!&ndash; AdvancedExternalizer defined as inner static class, with id set both via XML config and annotation &ndash;&gt;-->
+        <!--<advanced-externalizer id="3456"-->
+        <!--class="org.infinispan.marshall.AdvancedExternalizerTest$IdViaBothObj$Externalizer"/>-->
+        <!--</serialization>-->
+        <jmx domain="eu.leads.processor"></jmx>
+        <local-cache name="defaultEncryptedCache" start="false" statistics="false">
+            <eviction max-entries="1000" strategy="FIFO"/>
+            <persistence>
+                <file-store path="${java.io.tmpdir}" shared="false" preload="false"/>
+            </persistence>
+        </local-cache>
+    </cache-container>
+
+</infinispan>

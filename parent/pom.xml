@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>gr.tuc.softnet</groupId>
+    <artifactId>multicloud-mr-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <!--<dependency>-->
+    <!--<groupId>ch.qos.logback</groupId>-->
+    <!--<artifactId>logback-core</artifactId>-->
+    <!--<version>1.1.2</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.slf4j</groupId>-->
+    <!--<artifactId>slf4j-jdk14</artifactId>-->
+    <!--<version>1.7.5</version>-->
+    <!--</dependency>-->
+
+
+    <!--      <dependency>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-log4j12</artifactId>
+             <version>1.7.7</version>
+          </dependency>-->
+
+
+    <properties>
+        <infinispan.version>7.0.1-SNAPSHOT</infinispan.version>
+        <processor.version>1.0-SNAPSHOT</processor.version>
+        <vertx.version>2.1.5</vertx.version>
+        <vertx.testtools.version>2.0.3-final</vertx.testtools.version>
+        <junit.version>4.11</junit.version>
+        <hadoop.version>2.5.1</hadoop.version>
+        <protobuf.version>2.5.0</protobuf.version>
+        <tajo.version>0.10.0-SNAPSHOT</tajo.version>
+        <netty.version>4.0.25.Final</netty.version>
+        <slf4j.version>1.7.6</slf4j.version>
+
+        <maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
+        <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
+        <maven.clean.plugin.version>2.6</maven.clean.plugin.version>
+        <maven.vertx.plugin.version>2.0.4-final</maven.vertx.plugin.version>
+        <maven.surefire.plugin.version>2.17</maven.surefire.plugin.version>
+        <maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
+        <maven.surefire.report.plugin.version>2.17</maven.surefire.report.plugin.version>
+        <maven.javadoc.plugin.version>2.9</maven.javadoc.plugin.version>
+        <maven.dependency.plugin.version>2.9</maven.dependency.plugin.version>
+        <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
+        <maven.jar.plugin.version>2.5</maven.jar.plugin.version>
+
+
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven.install.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

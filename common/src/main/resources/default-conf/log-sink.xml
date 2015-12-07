@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<leads-processor-components>
+    <componentType>leads.log.sink</componentType>
+    <groups>
+        eu.leads.processor.log.error,eu.leads.processor.log.info,eu.leads.processor.log.warn,eu.leads.processor.log.fatal,eu.leads.processor.log.debug
+    </groups>
+</leads-processor-components>

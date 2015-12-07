@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<leads-processor-bootstrap>
+    <baseDir>/tmp/boot-conf/</baseDir>
+    <!-- here are all the conf files of the available modules-->
+    <hdfs>
+        <uri>obtain</uri>
+        <user>leads</user>
+        <prefix>path</prefix>
+    </hdfs>
+    <scheduler>chedulerip</scheduler>
+    <deploymentType>multicloud</deploymentType>
+    <adresses>obtain</adresses>
+    <!-- localhost, 5.147.254.198-->
+    <startUpDelay>20</startUpDelay>
+    <!--delay between modules startup (seconds) -->
+    <processor>
+        <version>1.0-SNAPSHOT</version>
+        <groupId>gr.tuc.softnet</groupId>
+        <vertxArg>cluster</vertxArg>
+        <component>
+            <name>log-sink</name>
+            <configurationFile>log-sink.xml</configurationFile>
+            <numberOfProcessors>1</numberOfProcessors>
+            <instances>1</instances>
+            <modName>log-sink-module</modName>
+        </component>
+        <component>
+            <name>imanager</name>
+            <configurationFile>imanager.xml</configurationFile>
+            <numberOfProcessors>1</numberOfProcessors>
+            <instances>1</instances>
+        </component>
+        <component>
+            <name>planner</name>
+            <configurationFile>planner.xml</configurationFile>
+            <numberOfProcessors>1</numberOfProcessors>
+            <instances>1</instances>
+        </component>
+        <component>
+            <name>deployer</name>
+            <configurationFile>deployer.xml</configurationFile>
+            <numberOfProcessors>1</numberOfProcessors>
+            <instances>1</instances>
+        </component>
+        <component>
+            <name>nqe</name>
+            <configurationFile>nqe.xml</configurationFile>
+            <numberOfProcessors>1</numberOfProcessors>
+            <instances>1</instances>
+        </component>
+        <component>
+            <name>webservice</name>
+            <configurationFile>webservice.xml</configurationFile>
+            <numberOfProcessors>1</numberOfProcessors>
+            <instances>1</instances>
+            <modName>processor-webservice</modName>
+        </component>
+    </processor>
+    <ssh>
+        <username>ubuntu</username>
+        <remoteDir>/tmp/</remoteDir>
+        <!--<password>testpass</password> -->
+        <rsa>/home/ubuntu/key.rsa</rsa>
+        <!-- a filename -->
+    </ssh>
+</leads-processor-bootstrap>

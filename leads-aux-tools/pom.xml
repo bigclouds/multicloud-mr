@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>multicloud-mr-parent</artifactId>
+        <groupId>gr.tuc.softnet</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>leads-aux-tools</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <!--<module>data-collection</module>-->
+        <!--<module>data-snapshot</module>-->
+        <!--<module>uber-snapshot</module>-->
+        <!--<module>load-csv</module>-->
+        <!--<module>wp4-scheduler-client</module>-->
+        <!--<module>data-replay</module>-->
+        <!--<module>plugin-deployer</module>-->
+        <!--<module>load-amplab</module>-->
+        <module>bootstrapper</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>gr.tuc.softnet</groupId>
+            <artifactId>multicloud-mr-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>2.3</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Compiler plugin enforces Java 1.6 compatibility and activates annotation
+                processors -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

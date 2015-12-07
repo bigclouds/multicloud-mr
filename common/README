@@ -1,0 +1,4 @@
+MapReduce DistrExecution:
+mvn compile
+mvn exec:java -Dexec.mainClass="eu.leads.processor.common.test.LeadsDistMapReduceTest" -Dexec.args="-t master -f ./example.log" -e
+

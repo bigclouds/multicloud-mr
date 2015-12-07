@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<leads-processor-bootstrap>
+    <!--The local directory where the basic xml configuration for the components is found-->
+    <baseDir>/tmp/boot-conf/</baseDir>
+    <!-- The remote directory where the configuration files will be saved-->
+    <remoteDir>/tmp/</remoteDir>
+
+    <!--HDFS connection information for the deployment of  jars to multiple micro-clouds-->
+    <hdfs>
+        <!--valid uri for the hdfs connection-->
+        <uri>hdfs://uri:8020</uri>
+        <!--username to be used for the hdfs -->
+        <user>username</user>
+        <!--default prefix used for the hdfs storage of the engine to store the jars -->
+        <prefix>/user/username  /</prefix>
+    </hdfs>
+
+    <!--deployment type multicloud-->
+    <deploymentType>multicloud</deploymentType>
+    <adresses>
+        <MC name='hamm5' credentials="cloudandheat">
+            <node name='leads-qe1' privateIp='10.105.0.44'>5.147.254.161</node>
+        </MC>
+        <MC name='hamm6' credentials="cloudandheat">
+            <node name='leads-qe2' privateIp='10.106.0.33'>5.147.254.199</node>
+        </MC>
+        <MC name='dresden2' credentials="cloudandheat">
+            <node name='leads-qe3' privateIp='10.102.0.51'>80.156.73.113</node>
+        </MC>
+        <MC name='dd1a' credentials="cloudandheat">
+            <node name='leads-qe8' privateIp='10.130.0.16'>80.156.222.4</node>
+        </MC>
+    </adresses>
+    <!--delay between modules startup (seconds) -->
+    <startUpDelay>10</startUpDelay>
+
+    <!--Define the node and the webservice components to be deployed-->
+    <processor>
+        <version>1.0-SNAPSHOT</version>
+        <groupId>gr.tuc.softnet</groupId>
+        <vertxArg>cluster</vertxArg>
+        <component>
+            <name>nqe</name>
+            <configurationFile>nqe.xml</configurationFile>
+            <numberOfProcessors>1</numberOfProcessors>
+            <instances>1</instances>
+        </component>
+        <component>
+            <name>webservice</name>
+            <configurationFile>webservice.xml</configurationFile>
+            <numberOfProcessors>1</numberOfProcessors>
+            <instances>1</instances>
+            <modName>processor-webservice</modName>
+        </component>
+    </processor>
+
+    <!--Connection information for the password-less ssh-->
+    <ssh>
+        <credentials>
+            <id>cloudandheat</id>
+            <username>ubuntu</username>
+            <!--<password>testpass</password> -->
+            <rsa>/home/ubuntu/key.rsa</rsa>
+            <!-- a filename -->
+        </credentials>
+    </ssh>
+</leads-processor-bootstrap>

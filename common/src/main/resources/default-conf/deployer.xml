@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<leads-processor-components>
+    <componentType>deployer</componentType>
+    <service>
+        <type>monitor</type>
+    </service>
+    <otherGroups>deployer.control,leads.processor.control</otherGroups>
+</leads-processor-components>

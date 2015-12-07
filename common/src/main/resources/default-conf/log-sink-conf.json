@@ -1,0 +1,12 @@
+{
+  "id": "log-sink-module-1",
+  "group": "leads.log.sink",
+  "groups": [
+    "eu.leads.processor.log.error",
+    "eu.leads.processor.log.info",
+    "eu.leads.processor.log.warn",
+    "eu.leads.processor.log.fatal",
+    "eu.leads.processor.log.debug"
+  ],
+  "configuration": "conf/log-sink.xml"
+}

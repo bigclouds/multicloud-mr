@@ -1,3 +1,5 @@
 This is repository contains the LEADS multi-cloud MapReduce engine that was developed as part of the LEADS project.
-Instructions to install and deploy the engine can be found here https://github.com/leads-project/multicloud-mr/wiki/LEADS-Multi-cloud-MapReduce-Installation
-and the instructions for compiling the system are availalble here https://github.com/leads-project/multicloud-mr/wiki/Compile-Instructions-for-the-LEADS-multi-cloud-MapReduce-engine
+Instructions to install and deploy the engine can be in the following link
+https://github.com/leads-project/multicloud-mr/wiki/LEADS-Multi-cloud-MapReduce-Installation
+and the instructions for compiling the system are availalble here 
+https://github.com/leads-project/multicloud-mr/wiki/Compile-Instructions-for-the-LEADS-multi-cloud-MapReduce-engine

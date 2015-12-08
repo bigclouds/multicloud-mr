@@ -1,4 +1,4 @@
-/home/ubuntu/multicloud/multicloud-mr/nqe/nqe-processor-mod/
-/home/ubuntu/multicloud/multicloud-mr/nqe/nqe-comp-mod/
-/home/ubuntu/multicloud/multicloud-mr/nqe/nqe-logic-mod/
-/home/ubuntu/multicloud/multicloud-mr/interface-manager/processor-webservice/
+./nqe/nqe-processor-mod/
+./nqe/nqe-comp-mod/
+./nqe/nqe-logic-mod/
+./interface-manager/processor-webservice/

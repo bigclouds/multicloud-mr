@@ -265,6 +265,10 @@ public class ClusterInfinispanManager implements InfinispanManager {
     //    getPersisentCache("leads.processor.catalog.databases");
     //    getPersisentCache("leads.processor.catalog.functions");
     //    getPersisentCache("leads.processor.catalog.indexes");
+    getPersisentCache("testCache");
+    getPersisentCache("input");
+    getPersisentCache("testInput");
+    getPersisentCache("test");
     getPersisentCache("metrics");
     getPersisentCache("leads.processor.catalog.indexesByColumn");
     getPersisentCache("leads.processor.databases.sub." + StringConstants.DEFAULT_DATABASE_NAME);

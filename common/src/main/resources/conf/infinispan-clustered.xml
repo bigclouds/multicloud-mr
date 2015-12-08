@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infinispan
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:infinispan:config:7.0 http://www.infinispan.org/schemas/infinispan-config-7.0.xsd"
+        xmlns="urn:infinispan:config:7.0">
+
+
+    <jgroups>
+        <stack-file name="tcp" path="conf/jgroups-tcp.xml"/>
+    </jgroups>
+
+    <threads>
+        <thread-factory name="infinispan-factory" group-name="infinispan"
+                        thread-name-pattern="RemoteCommandThread%G %i"/>
+        <cached-thread-pool name="infinispan-cached" thread-factory="infinispan-factory"/>
+        <blocking-bounded-queue-thread-pool name="infinispan-transport"
+                                            thread-factory="infinispan-factory"
+                                            core-threads="50" max-threads="120" queue-length="10000"
+                                            keepalive-time="10000"/>
+        <scheduled-thread-pool name="infinispan-eviction" thread-factory="infinispan-factory"/>
+        <thread-factory name="remote-factory" group-name="infinispan" thread-name-pattern="RemoteCommandThread"/>
+    </threads>
+
+    <cache-container name="defaultContainer" statistics="false" default-cache="defaultCache"
+                     start="true">
+        <transport stack="tcp" remote-command-executor="infinispan-transport"/>
+        <!--<serialization version="70"/>-->
+        <jmx domain="eu.leads.processor" duplicate-domains="true"></jmx>
+
+        <distributed-cache name="defaultCache" mode="SYNC" owners="1" start="true"
+                           statistics="true">
+
+            <compatibility></compatibility>
+            <!--<indexing index="NONE">-->
+            <!--<property name="default.directory_provider">ram</property>-->
+            <!--</indexing>-->
+            <!--&lt;!&ndash;<eviction max-entries="1000" strategy="LIRS" />&ndash;&gt;-->
+            <!--<transaction mode="NONE"/>-->
+            <!--<expiration lifespan="-1" max-idle="-1" interval="-1" />-->
+            <!--<state-transfer enabled="true" await-initial-transfer="true"/>-->
+        </distributed-cache>
+        <!--<distributed-cache name="WebPage" mode="SYNC" segments="20" owners="1" remote-timeout="10000000" start="EAGER">-->
+        <!--<locking acquire-timeout="1000" concurrency-level="1000000" striping="false"/>-->
+        <!--<indexing index="LOCAL">-->
+        <!--<property name="hibernate.search.default.directory_provider">filesystem</property>-->
+        <!--<property name="hibernate.search.default.indexBase">/tmp/infinispan/webpage</property>-->
+        <!--<property name="hibernate.search.lucene_version">LUCENE_CURRENT</property>-->
+        <!--<property name="hibernate.search.default.exclusive_index_use">true</property>-->
+        <!--<property name="hibernate.search.default.indexmanager">near-real-time</property>-->
+        <!--<property name="hibernate.search.default.indexwriter.ram_buffer_size">256</property>-->
+        <!--</indexing>-->
+        <!--<transaction mode="NONE"/>-->
+        <!--&lt;!&ndash;<eviction strategy="LRU" max-entries="10000"/>&ndash;&gt;-->
+        <!--<persistence>-->
+        <!--<file-store fetch-state="true"-->
+        <!--shared ="true"-->
+        <!--read-only="false"-->
+        <!--purge="false" path="/tmp/"/>-->
+        <!--</persistence>-->
+        <!--</distributed-cache>-->
+        <!--<distributed-cache name="Link" mode="SYNC" segments="20" owners="1" remote-timeout="10000" start="EAGER">-->
+        <!--<locking acquire-timeout="1000" concurrency-level="1000000" striping="false"/>-->
+        <!--<indexing index="LOCAL">-->
+        <!--<property name="hibernate.search.default.directory_provider">ram</property>-->
+        <!--&lt;!&ndash;<property name="hibernate.search.default.directory_provider">filesystem</property>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="hibernate.search.default.indexBase">/tmp/infinispan/webpage</property>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="hibernate.search.lucene_version">LUCENE_CURRENT</property>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="hibernate.search.default.exclusive_index_use">true</property>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="hibernate.search.default.indexmanager">near-real-time</property>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="hibernate.search.default.indexwriter.ram_buffer_size">256</property>&ndash;&gt;-->
+        <!--</indexing>-->
+        <!--<transaction mode="NONE"/>-->
+        <!--&lt;!&ndash;<eviction strategy="LRU" max-entries="10000"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<persistence>&ndash;&gt;-->
+        <!--&lt;!&ndash;<file-store fetch-state="true"&ndash;&gt;-->
+        <!--&lt;!&ndash;read-only="false"&ndash;&gt;-->
+        <!--&lt;!&ndash;purge="false" path="/tmp/"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</persistence>&ndash;&gt;-->
+        <!--</distributed-cache>-->
+    </cache-container>
+
+</infinispan>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infinispan
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:infinispan:config:7.0 http://www.infinispan.org/schemas/infinispan-config-7.0.xsd"
+        xmlns="urn:infinispan:config:7.0">
+
+
+    <jgroups>
+        <stack-file name="tcp" path="jgroups.xml"/>
+    </jgroups>
+    <threads>
+        <thread-factory name="infinispan-factory" group-name="infinispan"
+                        thread-name-pattern="%G %i" priority="5"/>
+        <cached-thread-pool name="infinispan-cached" thread-factory="infinispan-factory"/>
+        <blocking-bounded-queue-thread-pool name="infinispan-listener"
+                                            thread-factory="infinispan-factory"
+                                            core-threads="1" max-threads="1" queue-length="0"
+                                            keepalive-time="0"/>
+        <blocking-bounded-queue-thread-pool name="infinispan-transport"
+                                            thread-factory="infinispan-factory"
+                                            core-threads="5" max-threads="10" queue-length="100"
+                                            keepalive-time="10000"/>
+        <scheduled-thread-pool name="infinispan-eviction" thread-factory="infinispan-factory"/>
+        <scheduled-thread-pool name="infinispan-repl-queue" thread-factory="infinispan-factory"/>
+    </threads>
+    <cache-container name="defaultContainer" statistics="true" default-cache="defaultCache">
+        <transport stack="tcp"/>
+
+        <serialization marshaller="org.infinispan.marshall.core.VersionAwareMarshaller"
+                       version="1.0">
+            <!-- AdvancedExternalizer defined as inner static class, with id set via XML configuration -->
+            <advanced-externalizer id="1234"
+                                   class="org.infinispan.marshall.AdvancedExternalizerTest$IdViaConfigObj$Externalizer"/>
+            <!-- AdvancedExternalizer defined as inner static class, with id set via annotation -->
+            <advanced-externalizer
+                    class="org.infinispan.marshall.AdvancedExternalizerTest$IdViaAnnotationObj$Externalizer"/>
+            <!-- AdvancedExternalizer defined as inner static class, with id set both via XML config and annotation -->
+            <advanced-externalizer id="3456"
+                                   class="org.infinispan.marshall.AdvancedExternalizerTest$IdViaBothObj$Externalizer"/>
+        </serialization>
+        <jmx domain="eu.leads.processor"></jmx>
+        <distributed-cache name="default" mode="SYNC" owners="3" l1-lifespan="600000" start="true"
+                           statistics="true">
+            <compatibility enabled="true"/>
+            <eviction max-entries="10000"/>
+            <locking concurrency-level="2000"/>
+            <state-transfer enabled="false" await-initial-transfer="false"/>
+
+            <!--<persistence passivation="true">-->
+            <!--&lt;!&ndash;<file-store path="${java.io.tmpdir}" shared="false" preload="true"/>&ndash;&gt;-->
+            <!--<file-store path="/home/vagvaz/test/" shared="false" preload="true"/>-->
+            <!--</persistence>-->
+
+        </distributed-cache>
+        <distributed-cache name="queries:" mode="SYNC" owners="3" l1-lifespan="600000" start="true"
+                           statistics="true"></distributed-cache>
+        <distributed-cache name="tables:" mode="SYNC" owners="3" l1-lifespan="600000" start="true"
+                           statistics="true">
+            <compatibility enabled="true"/>
+        </distributed-cache>
+    </cache-container>
+
+</infinispan>

@@ -12,7 +12,7 @@ import org.infinispan.context.Flag;
 import org.infinispan.ensemble.EnsembleCacheManager;
 import org.infinispan.ensemble.Site;
 import org.infinispan.ensemble.cache.EnsembleCache;
-import org.infinispan.ensemble.cache.distributed.HashBasedPartitioner;
+import org.infinispan.ensemble.cache.distributed.partitioning.HashBasedPartitioner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
